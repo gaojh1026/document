@@ -1,0 +1,16 @@
+pages:
+  image: node:16.20.2 # 使用的Docker镜像
+  script:
+    - npm install # 安装项目依赖
+    - npm run build # 运行构建脚本
+    - mv dist public # 假设您的构建产物在dist目录中，将其移动到public目录
+  # （可选）缓存node_modules目录以加快构建速度
+  cache:
+    paths:
+      - node_modules/
+  artifacts:
+    paths:
+      - public/ # GitLab Pages将从这个目录收集文件
+  only:
+    - main # 只在main分支上触发Pages构建
+ 
